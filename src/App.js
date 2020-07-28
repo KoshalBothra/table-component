@@ -34,7 +34,7 @@ const rows = [
   ),
   createData(
     4,
-    "Brittania White Bread",
+    "XBrittania White Bread",
     "B1993932",
     40.0,
     72.0,
@@ -43,7 +43,7 @@ const rows = [
   ),
   createData(
     5,
-    "Brittania White Bread",
+    "VBrittania White Bread",
     "B1993932",
     40.0,
     91.0,
@@ -52,7 +52,7 @@ const rows = [
   ),
   createData(
     6,
-    "Brittania White Bread",
+    "DBrittania White Bread",
     "B1993932",
     40.0,
     10.0,
@@ -61,7 +61,7 @@ const rows = [
   ),
   createData(
     7,
-    "Brittania White Bread",
+    "CBrittania White Bread",
     "B1993932",
     40.0,
     18.0,
@@ -70,7 +70,7 @@ const rows = [
   ),
   createData(
     8,
-    "Brittania White Bread",
+    "ABrittania White Bread",
     "B1993932",
     40.0,
     7.0,
@@ -82,7 +82,9 @@ function App() {
   const [data, setData] = useState([]);
   useEffect(() => {
     let temp = rows.sort((a, b) => {
-      return a.mrp - b.mrp;
+      if(a.prodname.toLowerCase() < b.prodname.toLowerCase()) return -1;
+      if(a.prodname.toLowerCase() > b.prodname.toLowerCase()) return 1;
+      return 0;
     });
     setData(temp);
   }, []);
