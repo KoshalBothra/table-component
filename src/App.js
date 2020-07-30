@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import CustomizedTables from "./table";
+import Table2 from  "./table2";
+import Backup from './backup';
 function createData(sno, prodname, SKU, sprice, mrp, unit, type) {
   return { sno, prodname, SKU, sprice, mrp, unit, type };
 }
@@ -90,7 +92,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <CustomizedTables data={data} />
+     <CustomizedTables data={data} /> 
+      <Table2 data={data}/>
+      <Backup/>
+      
+
     </div>
   );
 }
