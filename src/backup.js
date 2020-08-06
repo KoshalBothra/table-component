@@ -26,7 +26,6 @@ const StyledTableCell = withStyles((theme) => ({
     fontFamily: "Poppins",
     fontSize: 14,
     fontStyle: "normal",
-    alignItems: "center",
     fontWeight: 500,
   },
   body: {
@@ -34,7 +33,6 @@ const StyledTableCell = withStyles((theme) => ({
     color: "#9FAAB6",
     fontFamily: "Poppins",
     fontStyle: "normal",
-    alignItems: "center",
     fontWeight: 500,
   },
 }))(TableCell);
@@ -157,13 +155,13 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: true, disablePadding: true, label: 'Sno.' },
-  { id: 'prodname', numeric: true, disablePadding: false, label: 'prodname' },
-  { id: 'SKU', numeric: false, disablePadding: false, label: 'SKU' },
-  { id: 'sprice', numeric: true, disablePadding: false, label: 'sprice' },
-  { id: 'mrp', numeric: true, disablePadding: false, label: 'mrp' },
-  { id: 'unit', numeric: false, disablePadding: false, label: 'unit' },
-  { id: 'type', numeric: false, disablePadding: false, label: 'type' },
+  { id: 'name', numeric: true, label: 'Sno.' },
+  { id: 'prodname', numeric: true, label: 'Product Name' },
+  { id: 'SKU', numeric: false, label: 'SKU' },
+  { id: 'sprice', numeric: true, label: 'S.Price' },
+  { id: 'mrp', numeric: true, label: 'MRP' },
+  { id: 'unit', numeric: false,  label: 'Unit' },
+  { id: 'type', numeric: false,label: 'Type' },
 ];
 
 function EnhancedTableHead(props) {
@@ -175,7 +173,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <StyledTableCell padding="checkbox">
+        <StyledTableCell>
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -186,8 +184,6 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <StyledTableCell
             key={headCell.id}
-            align={headCell.numeric ? 'left' : 'left'}
-            padding={headCell.disablePadding ? 'default' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -220,10 +216,6 @@ EnhancedTableHead.propTypes = {
 };
 
 const useToolbarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -292,7 +284,6 @@ const useStyles = makeStyles((theme) => ({
     height: 1,
     margin: -1,
     overflow: 'hidden',
-    padding: 0,
     position: 'absolute',
     top: 20,
     width: 1,
@@ -382,21 +373,21 @@ export default function EnhancedTable() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <StyledTableCell padding="checkbox">
+                      <StyledTableCell>
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </StyledTableCell>
-                      <StyledTableCell component="th" id={labelId} scope="row" padding="none">
+                      <StyledTableCell component="th" id={labelId} scope="row">
                         {row.name}
                       </StyledTableCell>
-                      <StyledTableCell align="right">{row.prodname}</StyledTableCell>
-                      <StyledTableCell align="right">{row.SKU}</StyledTableCell>
-                      <StyledTableCell align="right">{row.sprice}</StyledTableCell>
-                      <StyledTableCell align="right">{row.mrp}</StyledTableCell>
-                      <StyledTableCell align="right">{row.unit}</StyledTableCell>
-                      <StyledTableCell align="right">{row.type}</StyledTableCell>
+                      <StyledTableCell align="left">{row.prodname}</StyledTableCell>
+                      <StyledTableCell align="left">{row.SKU}</StyledTableCell>
+                      <StyledTableCell align="left">{row.sprice}</StyledTableCell>
+                      <StyledTableCell align="left">{row.mrp}</StyledTableCell>
+                      <StyledTableCell align="left">{row.unit}</StyledTableCell>
+                      <StyledTableCell align="left">{row.type}</StyledTableCell>
                     </StyledTableRow>
                   );
                 })}
